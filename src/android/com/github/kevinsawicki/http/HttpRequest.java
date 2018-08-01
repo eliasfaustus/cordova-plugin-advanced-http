@@ -364,7 +364,8 @@ public class HttpRequest {
       throws HttpRequestException {
     try {
       System.setProperty("java.protocol.handler.pkgs", "com.sun.net.ssl.internal.www.protocol");
-      
+      System.setProperty("https.protocols", "TLSv1.2");
+
       SSLContext context = SSLContext.getInstance("TLSv1.2");
       //SSLContext context = SSLContext.getInstance("TLS");
 
