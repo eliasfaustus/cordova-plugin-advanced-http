@@ -365,16 +365,21 @@ public class HttpRequest {
     try {
       System.setProperty("java.protocol.handler.pkgs", "com.sun.net.ssl.internal.www.protocol");
       
-      SSLContext context = SSLContext.getInstance("TLSv1");
+      SSLContext context = SSLContext.getInstance("TLSv1.2");
       //SSLContext context = SSLContext.getInstance("TLS");
 
       context.init(null, trustManagers, new SecureRandom());
 
+      /*
       if (android.os.Build.VERSION.SDK_INT < 20) {
         return new TLSSocketFactory(context);
       } else {
         return context.getSocketFactory();
       }
+      */
+
+      return context.getSocketFactory();
+
     } catch (GeneralSecurityException e) {
       IOException ioException = new IOException("Security exception configuring SSL context");
       ioException.initCause(e);
