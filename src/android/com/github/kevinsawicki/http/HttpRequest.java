@@ -267,7 +267,7 @@ public class HttpRequest {
 
   public static final String CERT_MODE_PINNED = "pinned";
 
-  public static final String CERT_MODE_TRUSTALL = "trustall";
+  public static final String CERT_MODE_TRUSTALL = "nocheck";
 
   private static final String BOUNDARY = "00content0boundary00";
 
@@ -300,6 +300,7 @@ public class HttpRequest {
    */
   public static void setSSLCertMode(String mode) {
     try {
+		
       if (mode == CERT_MODE_TRUSTALL) {
         SOCKET_FACTORY = createSocketFactory(getNoopTrustManagers());
         HOSTNAME_VERIFIER = getTrustedVerifier();
@@ -379,7 +380,9 @@ public class HttpRequest {
       }
       */
 
-      return context.getSocketFactory();
+      //return context.getSocketFactory();
+      //return new TLSSocketFactory(context);
+      return new NoSSLv3SocketFactory(context);
 
     } catch (GeneralSecurityException e) {
       IOException ioException = new IOException("Security exception configuring SSL context");
