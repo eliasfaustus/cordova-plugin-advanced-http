@@ -93,6 +93,7 @@ import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 
 import android.text.TextUtils;
+import com.github.kevinsawicki.http.NoSSLv3SocketFactory;
 
 /**
  * A fluid interface for making HTTP requests using an underlying
